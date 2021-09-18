@@ -5,8 +5,19 @@ def data(number_of_different_bars):
     i = 0
     while i < number_of_different_bars:
         bar = int(input("Enter the weight of the bar "))
-        i += 1
-        weight.append(bar)
+        if bar > 0:
+            i += 1
+            weight_of_bars.append(bar)
+        else:
+            print("Incorrect input, the weight of bar must be > -1. Try again.")
+
+
+def check_is_number(number):
+    if not number or not number.isdigit():
+        return [print("You need to enter an number"), False]
+    else:
+        return True
+
 
 # capacity - knapsack's capacity, weight- weights of gold bars
 def knapsack(capacity, weight, number_of_different_bars):
@@ -17,7 +28,7 @@ def knapsack(capacity, weight, number_of_different_bars):
     # if the weight of the bar is greater than capacity,
     # this bar bar can't be included in optimal solution
 
-    if (weight[number_of_different_bars - 1] > capacity):
+    if weight[number_of_different_bars - 1] > capacity:
         return knapsack(capacity, weight, number_of_different_bars - 1)
     else:
         # consider all subsets of bars and calculate the
@@ -31,8 +42,18 @@ def knapsack(capacity, weight, number_of_different_bars):
             knapsack(capacity, weight, number_of_different_bars - 1))
 
 
-weight = []
-capacity = int(input("Enter the capacity of ur knapsack "))
-number_of_different_bars = int(input("Enter the number of bars with different weight "))
-data(number_of_different_bars)
-print(knapsack(capacity, weight, number_of_different_bars))
+weight_of_bars = []
+try:
+    capacity_of_knapsack = int(input("Enter the capacity of ur knapsack "))
+    if capacity_of_knapsack < 0:
+        print("Capacity of ur knapsack must be > -1")
+    else:
+        num_of_different_bars = int(input("Enter the number of bars with different weight "))
+        data(num_of_different_bars)
+        print(knapsack(capacity_of_knapsack, weight_of_bars, num_of_different_bars))
+except ValueError:
+    print("Incorrect input. Try again")
+except IndexError:
+    print("Number of bars with different weight must be > -1")
+except EOFError or KeyboardInterrupt:
+    print("Error, incorrect input! Try again.")
