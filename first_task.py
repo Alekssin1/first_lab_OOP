@@ -1,7 +1,4 @@
 import sys
-from ultrasplit import split_by_symbol
-
-from ultrasplit import split_by_symbol
 
 
 # check whether the user input is empty
