@@ -1,26 +1,26 @@
 import sys
 
 
-def check_sign(char):
-    return char not in "+-/*"
+def check_sign(sign):
+    return sign not in "+-"
 
 
 # check whether the user input is empty
-def check_string_empty(string):
-    if not string:
+def check_expression_empty(expression):
+    if not expression:
         return [False, None]
     else:
         # create boolean for the loop
         true_mb_false = False
-        string = list(string)
+        expression = list(expression)
         indicator = 0
-        return ebnf(string, indicator, true_mb_false)
+        return ebnf(expression, indicator, true_mb_false)
 
 
-# create function which determines whether the input string is the correct entry
+# create function which determines whether the input expression is the correct entry
 
 def ebnf(argument, ind, boolean):
-    # write the length of the string to the variable expression_size
+    # write the length of the expression to the variable expression_size
 
     # if the function has completely passed our list of
     # digits and signs and all satisfies return True and calculated expression
@@ -42,9 +42,7 @@ def ebnf(argument, ind, boolean):
             boolean = False
         return ebnf(argument, ind + 1, boolean)
 
+    # cut first element(name of the file) and join it in one expression
 
-# cut first element(name of the file) and join it in one string
-try:
-    print(check_string_empty("".join(sys.argv[1:])))
-except ZeroDivisionError:
-    print("Division by zero, error!")
+
+print(check_expression_empty("".join(sys.argv[1:])))

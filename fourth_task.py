@@ -1,5 +1,5 @@
-# data - function in which the user sets the weight of each gold bar
-# knapsack recursive function - that is a solution of the problem
+# input_data - function in which the user sets the weight of each gold bar
+# fill_knapsack recursive function - that is a solution of the problem
 # number_of_different_bars- number of different bars
 def input_data(number_of_different_bars):
     weight_of_bars = []

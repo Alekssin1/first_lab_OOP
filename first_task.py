@@ -1,6 +1,7 @@
 import sys
 
 # cut first element(name of the file)
+
 expression = "".join(sys.argv[1:])
 
 # We use join to make our expression a string with
