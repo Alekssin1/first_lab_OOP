@@ -44,4 +44,7 @@ def ebnf(argument, ind, boolean):
 
 
 # cut first element(name of the file) and join it in one string
-print(check_string_empty("".join(sys.argv[1:])))
+try:
+    print(check_string_empty("".join(sys.argv[1:])))
+except ZeroDivisionError:
+    print("Division by zero, error!")
