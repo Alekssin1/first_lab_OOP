@@ -2,10 +2,7 @@ import sys
 
 
 def check_sign(char):
-    if (char == "+" or char == "-" or char == "*" or char == "/") != 1:
-        return True
-    else:
-        False
+    return char not in "+-/*"
 
 
 # check whether the user input is empty
@@ -48,5 +45,3 @@ def ebnf(argument, ind, boolean):
 
 # cut first element(name of the file) and join it in one string
 print(check_string_empty("".join(sys.argv[1:])))
-
-

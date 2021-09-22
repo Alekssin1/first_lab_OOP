@@ -9,14 +9,7 @@ def data(number_of_different_bars):
             i += 1
             weight_of_bars.append(bar)
         else:
-            print("Incorrect input, the weight of bar must be > -1. Try again.")
-
-
-def check_is_number(number):
-    if not number or not number.isdigit():
-        return [print("You need to enter an number"), False]
-    else:
-        return True
+            print("Incorrect input, the weight of bar must be > 0. Try again.")
 
 
 # capacity - knapsack's capacity, weight- weights of gold bars
