@@ -1,7 +1,8 @@
 # data - function in which the user sets the weight of each gold bar
 # knapsack recursive function - that is a solution of the problem
 # number_of_different_bars- number of different bars
-def data(number_of_different_bars):
+def input_data(number_of_different_bars):
+    weight_of_bars = []
     i = 0
     while i < number_of_different_bars:
         bar = int(input("Enter the weight of the bar "))
@@ -10,10 +11,11 @@ def data(number_of_different_bars):
             weight_of_bars.append(bar)
         else:
             print("Incorrect input, the weight of bar must be > 0. Try again.")
+    return weight_of_bars
 
 
 # capacity - knapsack's capacity, weight- weights of gold bars
-def knapsack(capacity, weight, number_of_different_bars):
+def fill_knapsack(capacity, weight, number_of_different_bars):
     # end of function(when capacity is 0 or we have no bars
     if number_of_different_bars == 0 or capacity == 0:
         return 0
@@ -22,7 +24,7 @@ def knapsack(capacity, weight, number_of_different_bars):
     # this bar bar can't be included in optimal solution
 
     if weight[number_of_different_bars - 1] > capacity:
-        return knapsack(capacity, weight, number_of_different_bars - 1)
+        return fill_knapsack(capacity, weight, number_of_different_bars - 1)
     else:
         # consider all subsets of bars and calculate the
         # total weight of all subsets.
@@ -30,20 +32,19 @@ def knapsack(capacity, weight, number_of_different_bars):
         # From all such subsets, pick the maximum weight subset and return the weight of it.
 
         return max(
-            weight[number_of_different_bars - 1] + knapsack(capacity - weight[number_of_different_bars - 1], weight,
-                                                            number_of_different_bars - 1),
-            knapsack(capacity, weight, number_of_different_bars - 1))
+            weight[number_of_different_bars - 1] + fill_knapsack(capacity - weight[number_of_different_bars - 1],
+                                                                 weight,
+                                                                 number_of_different_bars - 1),
+            fill_knapsack(capacity, weight, number_of_different_bars - 1))
 
 
-weight_of_bars = []
 try:
     capacity_of_knapsack = int(input("Enter the capacity of ur knapsack "))
     if capacity_of_knapsack < 0:
         print("Capacity of ur knapsack must be > -1")
     else:
         num_of_different_bars = int(input("Enter the number of bars with different weight "))
-        data(num_of_different_bars)
-        print(knapsack(capacity_of_knapsack, weight_of_bars, num_of_different_bars))
+        print(fill_knapsack(capacity_of_knapsack, input_data(num_of_different_bars), num_of_different_bars))
 except ValueError:
     print("Incorrect input. Try again")
 except IndexError:
